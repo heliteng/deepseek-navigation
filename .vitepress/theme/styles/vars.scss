@@ -1,0 +1,51 @@
+:root {
+  // 主题色系
+  --primary-gradient: linear-gradient(120deg, #1677ff 0%, #4096ff 100%);
+  --primary-color: #1677ff;
+  --primary-color-light: #4096ff;
+  --primary-color-dark: #0958d9;
+  
+  // 背景色
+  --bg-color: #ffffff;
+  --bg-gradient: linear-gradient(180deg, rgba(22, 119, 255, 0.02) 0%, rgba(22, 119, 255, 0.05) 100%);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-hover-bg: rgba(255, 255, 255, 0.95);
+  
+  // 文字颜色
+  --text-color: #2c3e50;
+  --text-color-light: #4e5969;
+  --heading-color: #1d2129;
+  
+  // 边框颜色
+  --border-color: rgba(22, 119, 255, 0.1);
+  
+  // 其他
+  --header-height: 3.6rem;
+  --content-width: 1200px;
+  --sidebar-width: 18rem;
+  
+  // 阴影
+  --card-shadow: 0 4px 12px rgba(22, 119, 255, 0.1);
+  --hover-shadow: 0 8px 24px rgba(22, 119, 255, 0.15);
+}
+
+.dark {
+  --primary-gradient: linear-gradient(120deg, #1668dc 0%, #3c89e8 100%);
+  --primary-color: #1668dc;
+  --primary-color-light: #3c89e8;
+  --primary-color-dark: #0958d9;
+  
+  --bg-color: #0a0a0a;
+  --bg-gradient: linear-gradient(180deg, rgba(22, 119, 255, 0.05) 0%, rgba(22, 119, 255, 0.08) 100%);
+  --card-bg: rgba(30, 30, 30, 0.8);
+  --card-hover-bg: rgba(35, 35, 35, 0.95);
+  
+  --text-color: #e5e7eb;
+  --text-color-light: #9ca3af;
+  --heading-color: #f3f4f6;
+  
+  --border-color: rgba(22, 119, 255, 0.2);
+  
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+} 
