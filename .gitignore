@@ -5,8 +5,7 @@ yarn.lock
 pnpm-lock.yaml
 
 # 构建输出
-dist
-.vitepress/dist
+#.vitepress/dist
 .vitepress/cache
 .vitepress/.temp
 
