@@ -20,6 +20,19 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: 'DeepSeek导航 - 精选优质网址导航' }],
     ['meta', { property: 'og:description', content: '精选优质网址导航，为您提供高效便捷的上网导航服务' }],
     ['meta', { property: 'og:url', content: 'https://deepseeks.netlify.app/' }],
+    [
+      'script',
+      {},
+      `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?9cca9f1def91939ba806bb3d45d8b269";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      `,
+    ],
   ],
 
   themeConfig: {

@@ -1,7 +1,10 @@
 <template>
   <div v-if="isOpen" class="modal-overlay">
     <div class="modal-container">
-      <div class="modal-header">
+      <div 
+        class="modal-header"
+        :class="{ 'header-collapsed': isHeaderCollapsed }"
+      >
         <div class="tab-list">
           <button 
             v-for="site in availableSites" 
@@ -34,18 +37,43 @@
             </div>
           </button>
         </div>
+      </div>
+      
+      <div class="header-controls">
         <button 
-          class="close-button" 
+          class="toggle-button"
+          :class="{ 'button-collapsed': isHeaderCollapsed }"
+          @click="toggleHeader"
+          :title="isHeaderCollapsed ? '展开导航' : '收起导航'"
+        >
+          <svg 
+            viewBox="0 0 24 24" 
+            width="20" 
+            height="20"
+            :class="{ 'rotate-180': isHeaderCollapsed }"
+          >
+            <path 
+              fill="currentColor" 
+              d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+            />
+          </svg>
+        </button>
+
+        <button 
+          class="close-button"
           @click="closeModal"
           title="关闭窗口"
         >
-          <svg viewBox="0 0 24 24" width="24" height="24">
+          <svg viewBox="0 0 24 24" width="20" height="20">
             <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
           </svg>
         </button>
       </div>
       
-      <div class="modal-content">
+      <div 
+        class="modal-content"
+        :class="{ 'header-hidden': isHeaderCollapsed }"
+      >
         <div 
           v-for="site in availableSites"
           :key="site.url"
@@ -189,6 +217,12 @@ onMounted(() => {
 onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside);
 });
+
+const isHeaderCollapsed = ref(false);
+
+const toggleHeader = () => {
+  isHeaderCollapsed.value = !isHeaderCollapsed.value;
+};
 </script>
 
 <style scoped>
@@ -215,6 +249,7 @@ onUnmounted(() => {
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .modal-header {
@@ -222,10 +257,24 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
-  background: var(--bg-color);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border-color);
   position: relative;
   z-index: 2;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 60px;
+  min-height: 60px;
+  
+  &.header-collapsed {
+    height: 0;
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom-color: transparent;
+    overflow: hidden;
+  }
 }
 
 .tab-list {
@@ -281,6 +330,16 @@ onUnmounted(() => {
   }
 }
 
+.header-controls {
+  position: fixed;
+  top: 1.6rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.toggle-button,
 .close-button {
   display: flex;
   align-items: center;
@@ -293,9 +352,6 @@ onUnmounted(() => {
   border-radius: 8px;
   cursor: pointer;
   padding: 0;
-  margin-left: 1rem;
-  position: relative;
-  z-index: 10;
   transition: all 0.2s ease;
   
   &:hover {
@@ -303,13 +359,25 @@ onUnmounted(() => {
     transform: scale(1.05);
   }
   
-  &:active {
-    transform: scale(0.95);
+  svg {
+    transition: transform 0.3s ease;
+  }
+}
+
+.toggle-button {
+  .rotate-180 {
+    transform: rotate(180deg);
   }
   
-  svg {
-    width: 24px;
-    height: 24px;
+  &.button-collapsed {
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    
+    &:hover {
+      background: var(--hover-color);
+      border-color: var(--text-color-light);
+    }
   }
 }
 
@@ -318,6 +386,11 @@ onUnmounted(() => {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  transition: margin-top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &.header-hidden {
+    margin-top: 0;
+  }
 }
 
 iframe {
@@ -436,14 +509,21 @@ iframe {
     border-radius: 0;
   }
   
+  .toggle-button,
   .close-button {
     width: 32px;
     height: 32px;
     
     svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
     }
+  }
+  
+  .header-controls {
+    top: 0.5rem;
+    right: 0.75rem;
+    gap: 0.4rem;
   }
   
   .tab-button {
@@ -457,6 +537,11 @@ iframe {
   
   .tab-title {
     font-size: 0.85rem;
+  }
+
+  .modal-header {
+    height: 52px;
+    min-height: 52px;
   }
 }
 

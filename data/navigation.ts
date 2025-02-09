@@ -56,7 +56,7 @@ export const navigation: Navigation = {
           icon: '/images/logos/imyai.ico',
           iconBgColor: '#ffecda',
           category: 'tools',
-          tags: ['免费','满血版','需要注册']
+          tags: ['收费','满血版','需要注册']
         }
       ]
     },
