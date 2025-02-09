@@ -14,12 +14,12 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
-    ['meta', { name: 'keywords', content: '网址导航,DeepSeek导航,网站导航,上网导航,实用网站' }],
+    ['meta', { name: 'keywords', content: 'deepseek,deepseek满血版,deepseek部署,deepseek免费合集,AI网站导航,AI导航,AI导航网站' }],
     ['meta', { name: 'author', content: 'DeepSeek' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'DeepSeek导航 - 精选优质网址导航' }],
     ['meta', { property: 'og:description', content: '精选优质网址导航，为您提供高效便捷的上网导航服务' }],
-    ['meta', { property: 'og:url', content: 'https://nav.deepseek.com' }],
+    ['meta', { property: 'og:url', content: 'https://deepseeks.netlify.app/' }],
   ],
 
   themeConfig: {

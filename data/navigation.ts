@@ -25,7 +25,7 @@ export const navigation: Navigation = {
         {
           title: 'DeepSeek',
           url: 'https://chat.deepseek.com/',
-          description: '深度求索',
+          description: '由deepseek官方提供',
           icon: '/images/logos/deepseek.png',
           iconBgColor: '#1a1a1a',
           category: 'tools',
@@ -34,7 +34,7 @@ export const navigation: Navigation = {
         {
           title: '秘搭AI',
           url: 'https://metaso.cn/',
-          description: '全球最大的搜索引擎',
+          description: '勾选“长思考⋅R1”',
           icon: '/images/logos/metaso.ico',
           iconBgColor: '#ffffff',
           category: 'tools',
@@ -43,7 +43,7 @@ export const navigation: Navigation = {
         {
           title: '360纳米AI',
           url: 'https://www.n.cn/',
-          description: 'OpenAI 开发的 AI 对话助手',
+          description: '提问后在右下角切换到deepseek',
           icon: '/images/logos/360.ico',
           iconBgColor: '#f8f8f8',
           category: 'tools',
