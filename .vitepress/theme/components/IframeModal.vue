@@ -4,6 +4,7 @@
       <div 
         class="modal-header"
         :class="{ 'header-collapsed': isHeaderCollapsed }"
+        ref="headerRef"
       >
         <div class="tab-list">
           <button 
@@ -24,7 +25,7 @@
                 :alt="site.title"
                 class="tab-icon"
               >
-              <span class="tab-title">{{ site.title }}</span>
+              <span class="tab-title" v-if="site.url!='https://chat.deepseek.com/'">{{ site.title }}</span>
               <svg 
                 v-if="!canUseIframe(site.url)" 
                 class="external-icon" 
@@ -41,6 +42,7 @@
       
       <div class="header-controls">
         <button 
+          v-if="!isMobile"
           class="toggle-button"
           :class="{ 'button-collapsed': isHeaderCollapsed }"
           @click="toggleHeader"
@@ -61,6 +63,7 @@
 
         <button 
           class="close-button"
+          :class="{ 'mobile-close-button': isMobile }"
           @click="closeModal"
           title="关闭窗口"
         >
@@ -73,6 +76,7 @@
       <div 
         class="modal-content"
         :class="{ 'header-hidden': isHeaderCollapsed }"
+        ref="contentRef"
       >
         <div 
           v-for="site in availableSites"
@@ -118,6 +122,7 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
 import { navigation } from '../../../data/navigation';
+import { useWindowSize } from '@vueuse/core';
 
 interface Site {
   title: string;
@@ -219,9 +224,36 @@ onUnmounted(() => {
 });
 
 const isHeaderCollapsed = ref(false);
+const headerRef = ref<HTMLElement | null>(null);
+const contentRef = ref<HTMLElement | null>(null);
+const { width } = useWindowSize();
 
+// 判断是否为移动端
+const isMobile = computed(() => width.value <= 640);
+
+// 监听窗口大小变化，调整布局
+watch(isMobile, (newVal) => {
+  if (newVal) {
+    // 移动端时重置状态
+    isHeaderCollapsed.value = false;
+    if (headerRef.value) {
+      headerRef.value.style.display = 'flex';
+    }
+  }
+});
+
+// 优化移动端的切换逻辑
 const toggleHeader = () => {
   isHeaderCollapsed.value = !isHeaderCollapsed.value;
+  
+  // 确保在移动端时正确处理显示/隐藏
+  if (headerRef.value && isMobile.value) {
+    if (isHeaderCollapsed.value) {
+      headerRef.value.style.transform = 'translateY(-100%)';
+    } else {
+      headerRef.value.style.transform = 'translateY(0)';
+    }
+  }
 };
 </script>
 
@@ -266,6 +298,7 @@ const toggleHeader = () => {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   height: 60px;
   min-height: 60px;
+  width: 100%;
   
   &.header-collapsed {
     height: 0;
@@ -336,7 +369,7 @@ const toggleHeader = () => {
   right: 1.5rem;
   display: flex;
   gap: 0.5rem;
-  z-index: 10;
+  z-index: 1010;
 }
 
 .toggle-button,
@@ -466,6 +499,7 @@ iframe {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding-right: 0.8rem;
 }
 
 .tab-icon {
@@ -540,8 +574,69 @@ iframe {
   }
 
   .modal-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 52px;
     min-height: 52px;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    &.header-collapsed {
+      transform: translateY(-100%);
+    }
+  }
+  
+  .modal-content {
+    padding-top: 52px;
+    height: 100%;
+    
+    &.header-hidden {
+      padding-top: 0;
+    }
+  }
+  
+  .tab-list {
+    max-width: calc(100% - 48px);
+    padding: 0.25rem;
+  }
+  
+ 
+  
+  /* 移除移动端的控制按钮组样式 */
+  .header-controls.mobile-controls {
+    display: none;
+  }
+  
+  /* 适配刘海屏 */
+  .modal-container {
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  /* 优化滚动体验 */
+  .tab-list {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+/* 适配超小屏幕 */
+@media (max-width: 375px) {
+  .tab-button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .tab-icon {
+    width: 14px;
+    height: 14px;
   }
 }
 
