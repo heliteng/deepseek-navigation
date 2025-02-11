@@ -50,6 +50,15 @@ export const navigation: Navigation = {
           tags: ['免费','满血版','免注册']
         },
         {
+          title: 'Chat Stream',
+          url: 'https://www.chatstream.org/cn/chat/deepseek-r1#try-chat',
+          description: 'R1满血版、V3满血版',
+          icon: '/images/logos/chatstream.ico',
+          iconBgColor: '#ebfffa',
+          category: 'tools',
+          tags: ['免费','满血版','免注册']
+        },
+        {
           title: 'IMYAI',
           url: 'https://super.imyai.top/chat',
           description: '在应用广场搜索“deepseek”',
