@@ -26,6 +26,24 @@
                 class="tab-icon"
               >
               <span class="tab-title" v-if="site.url!='https://chat.deepseek.com/'">{{ site.title }}</span>
+              <button 
+                v-if="activeTab === site.url && !noIframeUrls.includes(site.url)"
+                class="refresh-button"
+                @click.stop="refreshIframe(site.url)"
+                title="刷新页面"
+              >
+                <svg 
+                  viewBox="0 0 24 24" 
+                  width="14" 
+                  height="14"
+                  class="refresh-icon"
+                >
+                  <path 
+                    fill="currentColor" 
+                    d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
+                  />
+                </svg>
+              </button>
               <svg 
                 v-if="!canUseIframe(site.url)" 
                 class="external-icon" 
@@ -253,6 +271,14 @@ const toggleHeader = () => {
     } else {
       headerRef.value.style.transform = 'translateY(0)';
     }
+  }
+};
+
+// 刷新 iframe
+const refreshIframe = (url: string) => {
+  const iframe = document.querySelector(`iframe[src="${url}"]`) as HTMLIFrameElement;
+  if (iframe) {
+    iframe.src = iframe.src;
   }
 };
 </script>
@@ -499,7 +525,8 @@ iframe {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding-right: 0.8rem;
+  padding-right: 0.5rem;
+  position: relative;
 }
 
 .tab-icon {
@@ -511,6 +538,35 @@ iframe {
 
 .tab-title {
   font-size: 0.9rem;
+}
+
+.refresh-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 4px;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    opacity: 1;
+    transform: rotate(180deg);
+  }
+}
+
+.refresh-icon {
+  transition: transform 0.3s ease;
+}
+
+.tab-button.active:hover .refresh-button {
+  display: flex;
 }
 
 /* 美化滚动条 */
@@ -603,7 +659,15 @@ iframe {
     padding: 0.25rem;
   }
   
- 
+  .refresh-button {
+    width: 18px;
+    height: 18px;
+    
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
   
   /* 移除移动端的控制按钮组样式 */
   .header-controls.mobile-controls {
