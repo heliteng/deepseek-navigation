@@ -42,7 +42,8 @@ export default defineConfig({
       ...navigation.categories.map(category => ({
         text: category.name,
         link: `/categories/${category.slug}`
-      }))
+      })),
+      { text: '隐私政策', link: '/privacy-policy' }
     ],
     
     socialLinks: [

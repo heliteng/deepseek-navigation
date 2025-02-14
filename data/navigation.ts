@@ -32,6 +32,24 @@ export const navigation: Navigation = {
           tags: ['官方','免费','需要注册']
         },
         {
+          title: 'Chat Stream',
+          url: 'https://www.chatstream.org/cn/chat/deepseek-r1#try-chat',
+          description: 'R1满血版、V3满血版',
+          icon: '/images/logos/chatstream.ico',
+          iconBgColor: '#ebfffa',
+          category: 'tools',
+          tags: ['免费','满血版','免注册']
+        },
+        {
+          title: '超算互联网',
+          url: 'https://chat.scnet.cn/',
+          description: '选择R1-671B模型',
+          icon: '/images/logos/scnet.ico',
+          iconBgColor: '#ffe2e2',
+          category: 'tools',
+          tags: ['免费','满血版','免注册']
+        },
+        {
           title: '秘搭AI',
           url: 'https://metaso.cn/',
           description: '勾选“长思考⋅R1”',
@@ -48,24 +66,6 @@ export const navigation: Navigation = {
           iconBgColor: '#f8f8f8',
           category: 'tools',
           tags: ['免费','满血版','免注册']
-        },
-        {
-          title: 'Chat Stream',
-          url: 'https://www.chatstream.org/cn/chat/deepseek-r1#try-chat',
-          description: 'R1满血版、V3满血版',
-          icon: '/images/logos/chatstream.ico',
-          iconBgColor: '#ebfffa',
-          category: 'tools',
-          tags: ['免费','满血版','免注册']
-        },
-        {
-          title: 'IMYAI',
-          url: 'https://super.imyai.top/chat',
-          description: '在应用广场搜索“deepseek”',
-          icon: '/images/logos/imyai.ico',
-          iconBgColor: '#ffecda',
-          category: 'tools',
-          tags: ['收费','满血版','需要注册']
         }
       ]
     },
