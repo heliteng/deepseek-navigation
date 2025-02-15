@@ -18,7 +18,7 @@ export interface Category {
 export const navigation: Navigation = {
   categories: [
     {
-      name: '满血版',
+      name: '推理型',
       slug: 'tools',
       description: '',
       items: [
@@ -30,6 +30,14 @@ export const navigation: Navigation = {
           iconBgColor: '#1a1a1a',
           category: 'tools',
           tags: ['官方','免费','需要注册']
+        },{
+          title: '当贝AI',
+          url: 'https://ai.dangbei.com/chat',
+          description: '速度快，站长推荐',
+          icon: '/images/logos/beidang.png',
+          iconBgColor: '#c8d9eb',
+          category: 'tools',
+          tags: ['免费','满血版','免注册']
         },
         {
           title: 'Chat Stream',
@@ -43,12 +51,19 @@ export const navigation: Navigation = {
         {
           title: '超算互联网',
           url: 'https://chat.scnet.cn/',
-          description: '选择R1-671B模型',
+          description: '选择R1-671B模型，有点慢',
           icon: '/images/logos/scnet.ico',
           iconBgColor: '#ffe2e2',
           category: 'tools',
           tags: ['免费','满血版','免注册']
-        },
+        }
+      ]
+    },{
+      name: '搜索型',
+      slug: 'tools',
+      description: '',
+      items: [
+       
         {
           title: '秘搭AI',
           url: 'https://metaso.cn/',
@@ -56,7 +71,7 @@ export const navigation: Navigation = {
           icon: '/images/logos/metaso.ico',
           iconBgColor: '#ffffff',
           category: 'tools',
-          tags: ['免费','满血版','免注册']
+          tags: ['免费','免注册']
         },
         {
           title: '360纳米AI',
@@ -65,7 +80,7 @@ export const navigation: Navigation = {
           icon: '/images/logos/360.ico',
           iconBgColor: '#f8f8f8',
           category: 'tools',
-          tags: ['免费','满血版','免注册']
+          tags: ['免费','免注册']
         }
       ]
     },
