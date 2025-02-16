@@ -185,18 +185,53 @@ const canUseIframe = (url: string) => {
   return !noIframeUrls.some(noIframeUrl => url.startsWith(noIframeUrl));
 };
 
-// 初始化
+const isHeaderCollapsed = ref(false);
+
+// 添加锁定和解锁滚动的函数
+const lockScroll = () => {
+  if (typeof document !== 'undefined') { // 确保在客户端执行
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${window.scrollY}px`;
+  }
+};
+
+const unlockScroll = () => {
+  if (typeof document !== 'undefined') { // 确保在客户端执行
+    const scrollY = document.body.style.top;
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+  }
+};
+
+// 监听模态框打开状态
 watch(() => props.isOpen, (newVal) => {
   if (newVal) {
+    // 模态框打开时
+    lockScroll();
     activeTab.value = props.initialUrl;
     loadedTabs.value = [props.initialUrl];
+    isHeaderCollapsed.value = false;
   } else {
-    // 关闭时重置状态
+    // 模态框关闭时
+    unlockScroll();
     activeTab.value = '';
     loadedTabs.value = [];
     errors.value = {};
+    isHeaderCollapsed.value = false;
   }
 }, { immediate: true });
+
+// 组件卸载时确保解锁滚动
+onUnmounted(() => {
+  if (props.isOpen) {
+    unlockScroll();
+  }
+});
 
 // 切换标签
 const switchTab = (site: Site) => {
@@ -241,7 +276,6 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside);
 });
 
-const isHeaderCollapsed = ref(false);
 const headerRef = ref<HTMLElement | null>(null);
 const contentRef = ref<HTMLElement | null>(null);
 const { width } = useWindowSize();
@@ -295,7 +329,8 @@ const refreshIframe = (url: string) => {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  padding: 10px;
+  padding: env(safe-area-inset-top, 10px) env(safe-area-inset-right, 10px) env(safe-area-inset-bottom, 10px) env(safe-area-inset-left, 10px);
+  overflow: hidden; /* 防止模态框内容溢出 */
 }
 
 .modal-container {
@@ -308,6 +343,8 @@ const refreshIframe = (url: string) => {
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   position: relative;
+  overscroll-behavior: contain; /* 防止滚动传递 */
+  touch-action: none; /* 禁止触摸事件传递到背景 */
 }
 
 .modal-header {
@@ -450,6 +487,8 @@ const refreshIframe = (url: string) => {
   &.header-hidden {
     margin-top: 0;
   }
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch; /* 保持 iOS 滚动流畅 */
 }
 
 iframe {
@@ -597,6 +636,11 @@ iframe {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
+    position: fixed; /* 确保固定定位 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
   
   .toggle-button,
