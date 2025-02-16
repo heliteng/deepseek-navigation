@@ -1,6 +1,6 @@
 ---
 layout: home
-title: DeepSeek导航 - 精选优质网址导航
+title: DeepSeek导航 - 认准DeepSeek 671b 满血版
 description: 精选优质网址导航，为您提供高效便捷的上网导航服务
 head:
   - - meta
