@@ -40,7 +40,7 @@ export const navigation: Navigation = {
           tags: ['免费','满血版','免注册']
         },{
           title: '腾讯元宝',
-          url: 'https://yuanbao.tencent.com/chat/',
+          url: 'https://yuanbao.tencent.com/',
           description: '强大算力，大厂值得信赖',
           icon: '/images/logos/yuanbao.png',
           iconBgColor: '#c3bef0',
