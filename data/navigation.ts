@@ -38,14 +38,6 @@ export const navigation: Navigation = {
           iconBgColor: '#c8d9eb',
           category: 'tools',
           tags: ['免费','满血版','免注册']
-        },{
-          title: '腾讯元宝',
-          url: 'https://yuanbao.tencent.com/chat/',
-          description: '强大算力，大厂值得信赖',
-          icon: '/images/logos/yuanbao.png',
-          iconBgColor: '#c3bef0',
-          category: 'tools',
-          tags: ['免费','满血版','需要注册']
         },
         {
           title: 'Chat Stream',
