@@ -55,6 +55,7 @@ export default defineConfig({
       copyright: `Copyright © ${new Date().getFullYear()} DeepSeek导航`
     }
   },
+ 
 
   // SEO 优化
   lastUpdated: true,

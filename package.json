@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev",
+    "dev": "vitepress dev --host 0.0.0.0",
     "build": "vitepress build",
     "serve": "vitepress serve",
     "generate": "tsx scripts/generate-pages.ts"

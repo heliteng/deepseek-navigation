@@ -23,22 +23,6 @@ export const navigation: Navigation = {
       description: '',
       items: [
         {
-          title: 'DeepSeek',
-          url: 'https://chat.deepseek.com/',
-          description: '由deepseek官方提供',
-          icon: '/images/logos/deepseek.png',
-          iconBgColor: '#1a1a1a',
-          category: 'tools',
-          tags: ['官方','免费','需要注册']
-        },{
-          title: '当贝AI',
-          url: 'https://ai.dangbei.com/chat',
-          description: '速度快，站长推荐',
-          icon: '/images/logos/beidang.png',
-          iconBgColor: '#c8d9eb',
-          category: 'tools',
-          tags: ['免费','满血版','免注册']
-        },{
           title: '腾讯元宝',
           url: 'https://yuanbao.tencent.com',
           description: '强大算力，大厂值得信赖',
@@ -46,6 +30,22 @@ export const navigation: Navigation = {
           iconBgColor: '#c3bef0',
           category: 'tools',
           tags: ['免费','满血版','需要注册']
+        },{
+          title: '问小白',
+          url: 'https://www.wenxiaobai.com/chat',
+          description: '支持创建智能体',
+          icon: '/images/logos/wenxiaobai.png',
+          iconBgColor: '#fecea8',
+          category: 'tools',
+          tags: ['免费','满血版','免注册']
+        },{
+          title: '当贝AI',
+          url: 'https://ai.dangbei.com/chat',
+          description: '支持多种模型',
+          icon: '/images/logos/beidang.png',
+          iconBgColor: '#c8d9eb',
+          category: 'tools',
+          tags: ['免费','满血版','免注册']
         },
         {
           title: 'Chat Stream',
@@ -59,11 +59,19 @@ export const navigation: Navigation = {
         {
           title: '超算互联网',
           url: 'https://chat.scnet.cn/',
-          description: '选择R1-671B模型，有点慢',
+          description: '选择R1-671B模型，速度慢',
           icon: '/images/logos/scnet.ico',
           iconBgColor: '#ffe2e2',
           category: 'tools',
           tags: ['免费','满血版','免注册']
+        },{
+          title: 'DeepSeek',
+          url: 'https://chat.deepseek.com/',
+          description: '由deepseek官方提供',
+          icon: '/images/logos/deepseek.png',
+          iconBgColor: '#1a1a1a',
+          category: 'tools',
+          tags: ['官方','免费','需要注册']
         }
       ]
     },{

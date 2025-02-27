@@ -30,6 +30,14 @@ import { navigation } from './data/navigation'
   margin: 0 auto;
   padding: 0 1rem;
 }
+@media (max-width: 640px) {
+  .nav-container {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left:0;
+    padding-right:0;
+  }
+}
 
 .nav-header {
   text-align: center;

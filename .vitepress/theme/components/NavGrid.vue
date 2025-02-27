@@ -33,6 +33,7 @@ defineProps<{
 .nav-grid {
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 3rem;
 }
 
@@ -92,8 +93,9 @@ defineProps<{
 @media (max-width: 640px) {
   .nav-list {
     /* 1列布局 */
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
+    row-gap: 0.6rem;
   }
   
   .category-header {

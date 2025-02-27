@@ -105,6 +105,7 @@
           <iframe
             v-if="loadedTabs.includes(site.url)"
             :src="site.url"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
             frameborder="0"
             allow="fullscreen"
             @load="onIframeLoad(site.url)"
@@ -225,12 +226,6 @@ const onIframeError = (url: string) => {
 
 // 关闭网站列表的点击外部处理
 const handleClickOutside = (event: MouseEvent) => {
-  if (
-    addButton.value && 
-    !addButton.value.contains(event.target as Node)
-  ) {
-    showSiteList.value = false;
-  }
 };
 
 onMounted(() => {
@@ -248,6 +243,7 @@ const { width } = useWindowSize();
 
 // 判断是否为移动端
 const isMobile = computed(() => width.value <= 640);
+console.log('isMobile:', isMobile.value)
 
 // 监听窗口大小变化，调整布局
 watch(isMobile, (newVal) => {
@@ -590,13 +586,20 @@ iframe {
 /* 移动端适配 */
 @media (max-width: 640px) {
   .modal-overlay {
-    padding: 0;
+    top: 52px;
+    bottom: 0;
+    padding:0;
+    box-sizing: border-box;
+    height: calc(100% - 52px);
   }
 
   .modal-container {
     width: 100vw;
-    height: 100vh;
-    border-radius: 0;
+    height: 100%; 
+    padding: 0px;
+    padding-bottom: 0px;
+    box-sizing: border-box;
+    border-radius: 0px;
   }
   
   .toggle-button,
@@ -646,14 +649,13 @@ iframe {
   }
   
   .modal-content {
-    padding-top: 52px;
+    margin-top: 0px;
     height: 100%;
-    
+    padding: 0px;
     &.header-hidden {
       padding-top: 0;
     }
   }
-  
   .tab-list {
     max-width: calc(100% - 48px);
     padding: 0.25rem;
@@ -675,10 +677,10 @@ iframe {
   }
   
   /* 适配刘海屏 */
-  .modal-container {
+  /*.modal-container {
     padding-top: env(safe-area-inset-top, 0);
     padding-bottom: env(safe-area-inset-bottom, 0);
-  }
+  }*/
   
   /* 优化滚动体验 */
   .tab-list {
@@ -702,6 +704,7 @@ iframe {
     width: 14px;
     height: 14px;
   }
+  
 }
 
 .external-icon {

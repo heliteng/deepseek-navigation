@@ -115,11 +115,15 @@ const openModal = () => {
     window.open(props.url, '_blank');
   } else {
     isModalOpen.value = true;
+    document.body.style.overflow = 'hidden'; // 禁用外部滚动
   }
 };
 
+
+
 const closeModal = () => {
   isModalOpen.value = false;
+  document.body.style.overflow = ''; // 恢复外部滚动
 };
 </script>
 

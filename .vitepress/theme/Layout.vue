@@ -13,7 +13,7 @@
 
     <main class="main-content">
       <div class="container">
-        <Content />
+        <Content style="width: 100%" />
       </div>
     </main>
 
@@ -106,7 +106,8 @@ const toggleDark = useToggle(isDark);
 
 @media (max-width: 640px) {
   .container {
-    padding: 0 1rem;
+    /*padding: 0 1rem;*/
+    padding: 0 0px;
   }
   
   .nav-header {
@@ -130,7 +131,7 @@ const toggleDark = useToggle(isDark);
 
 @media (max-width: 375px) {
   .container {
-    padding: 0 0.8rem;
+    padding: 0 0.2rem;
   }
 }
 </style> 
