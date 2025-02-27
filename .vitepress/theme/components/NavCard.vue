@@ -89,6 +89,7 @@ const isModalOpen = ref(false);
 // 定义不允许在 iframe 中加载的网站列表
 const noIframeUrls = [
   'https://chat.deepseek.com/',
+  'https://www.wenxiaobai.com/chat',
   // 添加其他不支持 iframe 的网站
 ];
 

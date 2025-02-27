@@ -31,14 +31,6 @@ export const navigation: Navigation = {
           category: 'tools',
           tags: ['免费','满血版','需要注册']
         },{
-          title: '问小白',
-          url: 'https://www.wenxiaobai.com/chat',
-          description: '支持创建智能体',
-          icon: '/images/logos/wenxiaobai.png',
-          iconBgColor: '#fecea8',
-          category: 'tools',
-          tags: ['免费','满血版','免注册']
-        },{
           title: '当贝AI',
           url: 'https://ai.dangbei.com/chat',
           description: '支持多种模型',
@@ -72,6 +64,14 @@ export const navigation: Navigation = {
           iconBgColor: '#1a1a1a',
           category: 'tools',
           tags: ['官方','免费','需要注册']
+        },{
+          title: '问小白',
+          url: 'https://www.wenxiaobai.com/chat',
+          description: '支持创建智能体',
+          icon: '/images/logos/wenxiaobai.png',
+          iconBgColor: '#fecea8',
+          category: 'tools',
+          tags: ['免费','满血版','免注册']
         }
       ]
     },{
