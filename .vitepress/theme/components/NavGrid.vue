@@ -27,6 +27,7 @@ import NavCard from './NavCard.vue';
 defineProps<{
   categories: Category[]
 }>();
+
 </script>
 
 <style scoped>
