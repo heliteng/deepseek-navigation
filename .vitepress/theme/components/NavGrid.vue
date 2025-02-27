@@ -23,19 +23,19 @@
 <script setup lang="ts">
 import { Category } from '../../../data/navigation';
 import NavCard from './NavCard.vue';
-
+/*import axios from 'axios'
+try {
+  const response = await axios.get('/api/ds')
+  console.log(response)
+} catch (error) {
+  console.error('API Error:', error)
+}*/
 defineProps<{
   categories: Category[]
 }>();
-/*
-import axios from 'axios'
-try {
-  const response = await axios.get('/api/ds')
-  console.log(response.data)
-} catch (error) {
-  console.error('API Error:', error)
-} 
-*/
+
+
+
 
 </script>
 
