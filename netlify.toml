@@ -1,5 +1,5 @@
 [[redirects]]
-from = "/api/*"
-to = "http://182.42.152.143:81/:splat"  # 将 /api/xxx 代理到后端
-status = 200
-force = true
+    from = "/api/*"
+    to = "http://182.42.152.143:81/:splat"  # 将 /api/xxx 代理到后端
+    status = 200
+    force = true
