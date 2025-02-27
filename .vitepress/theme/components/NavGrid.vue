@@ -27,6 +27,13 @@ import NavCard from './NavCard.vue';
 defineProps<{
   categories: Category[]
 }>();
+import axios from 'axios'
+try {
+  const response = await axios.get('/api/ds')
+  console.log(response.data)
+} catch (error) {
+  console.error('API Error:', error)
+} 
 
 </script>
 

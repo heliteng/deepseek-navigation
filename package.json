@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.0.0",
+    "axios": "^1.8.1",
     "vitepress": "^1.0.0",
     "vue": "^3.3.0"
   },
