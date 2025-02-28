@@ -21,7 +21,7 @@
     <footer class="footer">
       <div class="container">
         <p>© {{ new Date().getFullYear() }} {{ siteTitle }}</p>
-        <p>今日访问量: {{ todayVisits }}</p> <!-- 新增访问量显示 -->
+        <p style="padding-right: 20px">今日访问量: {{ todayVisits }}  </p> <!-- 新增访问量显示 -->
       </div>
     </footer>
   </div>
@@ -118,6 +118,9 @@ try {
   padding: 2rem 0;
   text-align: center;
   color: var(--text-color-light);
+  .container{
+    text-align: center;
+  }
 }
 
 .logo {
