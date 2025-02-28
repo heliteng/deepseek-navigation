@@ -6,6 +6,18 @@ export default defineConfig({
   description: '精选优质网址导航，为您提供高效便捷的上网导航服务',
   lang: 'zh-CN',
   
+  vite:{
+    server:{
+      proxy:{
+        '/api': {
+          target: 'http://182.42.152.143:81', // 目标接口地址
+          changeOrigin: true, // 解决跨域
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        }
+      }
+    }
+  },
+  
   head: [
     ['link', { rel: 'icon', type: 'image/x-icon', href: '/images/favicon/favicon.ico' }],
     ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/images/favicon/favicon-16x16.png' }],
@@ -78,5 +90,5 @@ export default defineConfig({
       permalinkBefore: true,
       permalinkSymbol: '#'
     }
-  }
+  },
 }); 

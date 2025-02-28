@@ -23,21 +23,35 @@
 <script setup lang="ts">
 import { Category } from '../../../data/navigation';
 import NavCard from './NavCard.vue';
-/*import axios from 'axios'
-try {
-  const response = await axios.get('/api/ds')
-  console.log(response)
-} catch (error) {
-  console.error('API Error:', error)
-}*/
+
 defineProps<{
   categories: Category[]
 }>();
 
-
+import axios from 'axios'
+try {
+ axios.get('/api/ds/hello', {
+    // 添加超时配置
+    timeout: 8000,
+    // 明确设置请求头
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    console.log(response.data)
+ }).catch(error => {
+   console.error('请求失败:'+error)
+  })
+} catch (error) {
+  debugger
+  if (axios.isAxiosError(error)) {
+    console.error('请求失败:')
+  }
+}
 
 
 </script>
+
 
 <style scoped>
 .nav-grid {

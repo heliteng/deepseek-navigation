@@ -3,3 +3,15 @@
     to = "http://182.42.152.143:81/:splat"  # 将 /api/xxx 代理到后端
     status = 200
     force = true
+    # 可选添加CORS头
+    [redirects.headers]
+        Access-Control-Allow-Origin = "*"
+        Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+[dev]
+    command = "npm run dev"
+    port = 8888
+    targetPort = 5173
+    publish = "./vitepress/dist"
+[build]
+    command = "npm run build"  # 实际构建命令
+    publish = ".vitepress/dist"
