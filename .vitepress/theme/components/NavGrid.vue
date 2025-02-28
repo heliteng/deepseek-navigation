@@ -30,7 +30,7 @@ defineProps<{
 
 import axios from 'axios'
 try {
- axios.get('/api/ds/hello', {
+ axios.get('/api/ds/nav/stat', {
     // 添加超时配置
     timeout: 8000,
     // 明确设置请求头
