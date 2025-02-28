@@ -7,6 +7,9 @@
     [redirects.headers]
         Access-Control-Allow-Origin = "*"
         Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    # 真实ip也转发
+    [headers."/api/*"]
+        X-Client-IP = "{client_ip}"
 [dev]
     command = "npm run dev"
     port = 8888
