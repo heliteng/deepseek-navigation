@@ -10,6 +10,7 @@
     # 真实ip也转发
     [headers."/api/*"]
         X-Client-IP = "{client_ip}"
+        X-Forwarded-For = "{client_ip}"
 [dev]
     command = "npm run dev"
     port = 8888
