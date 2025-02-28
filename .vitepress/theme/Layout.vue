@@ -5,6 +5,7 @@
         <div class="logo">
           <a href="/" class="site-title">{{ siteTitle }}</a>
         </div>
+        <div></div>
         <div class="theme-toggle" @click="toggleDark()">
           {{ isDark ? '🌙' : '☀️' }}
         </div>
@@ -20,6 +21,7 @@
     <footer class="footer">
       <div class="container">
         <p>© {{ new Date().getFullYear() }} {{ siteTitle }}</p>
+        <p>今日访问量: {{ todayVisits }}</p> <!-- 新增访问量显示 -->
       </div>
     </footer>
   </div>
@@ -33,6 +35,49 @@ const { site } = useData();
 const siteTitle = site.value.title;
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+
+
+import { ref, onMounted } from 'vue';
+
+// 新增访问量数据
+const todayVisits = ref(0);
+onMounted(async () => {
+  try {
+    const response = await axios.get('/api/ds/nav/stat', {
+      timeout: 8000,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (response.data && response.data.data) {
+      todayVisits.value = response.data.data || 0;
+    }
+  } catch (error) {
+    console.error('请求失败:', error);
+  }
+});
+import axios from 'axios'
+try {
+  axios.get('/api/ds/nav/stat', {
+    // 添加超时配置
+    timeout: 8000,
+    // 明确设置请求头
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => {
+    console.log(response.data?.data)
+  }).catch(error => {
+    console.error('请求失败:'+error)
+  })
+} catch (error) {
+  debugger
+  if (axios.isAxiosError(error)) {
+    console.error('请求失败:')
+  }
+}
+
+
 </script>
 
 <style scoped>

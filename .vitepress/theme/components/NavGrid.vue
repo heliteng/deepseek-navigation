@@ -28,27 +28,6 @@ defineProps<{
   categories: Category[]
 }>();
 
-import axios from 'axios'
-try {
- axios.get('/api/ds/nav/stat', {
-    // 添加超时配置
-    timeout: 8000,
-    // 明确设置请求头
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then(response => {
-    console.log(response.data)
- }).catch(error => {
-   console.error('请求失败:'+error)
-  })
-} catch (error) {
-  debugger
-  if (axios.isAxiosError(error)) {
-    console.error('请求失败:')
-  }
-}
-
 
 </script>
 
